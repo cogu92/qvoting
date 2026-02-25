@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qvoting"
+version = "0.1.0"
+description = "Quantum voting circuits with integrated error mitigation for NISQ hardware"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [
+  { name = "Nicolas" },
+]
+keywords = [
+  "quantum computing",
+  "quantum voting",
+  "error mitigation",
+  "NISQ",
+  "Qiskit",
+  "majority voter",
+  "load balancer",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "qiskit>=1.0.0",
+  "qiskit-aer>=0.13.0",
+  "numpy>=1.24.0",
+  "matplotlib>=3.7.0",
+]
+
+[project.optional-dependencies]
+ibm = ["qiskit-ibm-runtime>=0.20.0"]
+dev = [
+  "pytest>=7.0",
+  "pytest-cov",
+  "black",
+  "ruff",
+  "sphinx",
+  "sphinx-rtd-theme",
+]
+
+[project.urls]
+Homepage = "https://github.com/[usuario]/qvoting"
+Repository = "https://github.com/[usuario]/qvoting"
+Paper = "https://arxiv.org/abs/[TODO]"
+"Bug Tracker" = "https://github.com/[usuario]/qvoting/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 88
+target-version = ["py39", "py310", "py311"]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "I"]
