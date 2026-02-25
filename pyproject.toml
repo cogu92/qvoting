@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qvoting"
-version = "0.1.1"
+version = "0.1.2"
 description = "Quantum voting circuits with integrated error mitigation for NISQ hardware"
 readme = "README.md"
 license = "MIT"
