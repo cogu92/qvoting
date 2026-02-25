@@ -11,7 +11,7 @@ license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.9"
 authors = [
-  { name = "Nicolas" },
+  { name = "Nicolas Yesid Corredor Guasca" },
 ]
 keywords = [
   "quantum computing",
@@ -53,7 +53,6 @@ dev = [
 [project.urls]
 Homepage = "https://github.com/cogu92/qvoting"
 Repository = "https://github.com/cogu92/qvoting"
-Paper = "https://arxiv.org/abs/[TODO]"
 "Bug Tracker" = "https://github.com/cogu92/qvoting/issues"
 
 [tool.setuptools.packages.find]

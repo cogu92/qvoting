@@ -105,7 +105,7 @@ If you use QVoting in your research, please cite:
 ```bibtex
 @article{qvoting2026,
   title   = {Quantum Voting Circuits with Integrated Error Mitigation on NISQ Hardware},
-  author  = {Nicolas},
+  author  = {Corredor Guasca, Nicolas Yesid},
   year    = {2026},
   journal = {[under review]},
   url     = {https://arxiv.org/abs/[TODO]}

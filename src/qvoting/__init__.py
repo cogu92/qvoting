@@ -19,7 +19,7 @@ try:
 except PackageNotFoundError:
     __version__ = "0.1.0-dev"
 
-__author__ = "Nicolas"
+__author__ = "Nicolas Yesid Corredor Guasca"
 __license__ = "MIT"
 
 # Importaciones principales para acceso directo
