@@ -86,9 +86,12 @@ def _amplify_gates(
     """
     qc_amp = QuantumCircuit(qc.num_qubits, qc.num_clbits)
     for instr in qc.data:
+        # Map bit objects → integer indices for the new circuit
+        q_indices = [qc.find_bit(q).index for q in instr.qubits]
+        c_indices = [qc.find_bit(c).index for c in instr.clbits]
         if instr.operation.name == target_gate:
             for _ in range(factor):
-                qc_amp.append(instr.operation, instr.qubits, instr.clbits)
+                qc_amp.append(instr.operation, q_indices, c_indices)
         else:
-            qc_amp.append(instr.operation, instr.qubits, instr.clbits)
+            qc_amp.append(instr.operation, q_indices, c_indices)
     return qc_amp
