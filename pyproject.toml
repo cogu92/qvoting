@@ -51,10 +51,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/[usuario]/qvoting"
-Repository = "https://github.com/[usuario]/qvoting"
+Homepage = "https://github.com/cogu92/qvoting"
+Repository = "https://github.com/cogu92/qvoting"
 Paper = "https://arxiv.org/abs/[TODO]"
-"Bug Tracker" = "https://github.com/[usuario]/qvoting/issues"
+"Bug Tracker" = "https://github.com/cogu92/qvoting/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
