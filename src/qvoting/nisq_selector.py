@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import datetime
+from datetime import timezone
 from pathlib import Path
 from typing import Optional
 
@@ -170,7 +171,7 @@ class NISQSelector:
             and self._last_eval is not None
             and self._df_qt is not None
         ):
-            elapsed = (datetime.datetime.utcnow() - self._last_eval).total_seconds() / 60
+            elapsed = (datetime.datetime.now(timezone.utc).replace(tzinfo=None) - self._last_eval).total_seconds() / 60
             if elapsed < self.cache_minutes:
                 return self._df_qt
 
@@ -184,7 +185,7 @@ class NISQSelector:
 
         available = dq["backend"].unique().tolist()
         self._df_qt = _compute_qt(dq, dg, available, w_t1, w_t2, w_ro, w_gate, self.threshold)
-        self._last_eval = datetime.datetime.utcnow()
+        self._last_eval = datetime.datetime.now(timezone.utc).replace(tzinfo=None)
 
         # Guardar snapshot opcional
         if self.snapshot_dir is not None:
