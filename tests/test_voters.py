@@ -40,7 +40,7 @@ def test_voter_3_simulation():
     from qiskit_aer import AerSimulator
     from qiskit import transpile
 
-    qc = majority_voter(num_inputs=3)
+    qc = majority_voter(num_inputs=3, initialize=True)
     sim = AerSimulator()
     qc_t = transpile(qc, sim)
     result = sim.run(qc_t, shots=1024).result()
