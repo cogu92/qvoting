@@ -8,7 +8,7 @@ from __future__ import annotations
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 
 
-def majority_voter(num_inputs: int = 3) -> QuantumCircuit:
+def majority_voter(num_inputs: int = 3, initialize: bool = False) -> QuantumCircuit:
     """
     Build a quantum majority voter circuit.
 
@@ -18,11 +18,17 @@ def majority_voter(num_inputs: int = 3) -> QuantumCircuit:
     ----------
     num_inputs : int
         Number of input qubits. Supported: 3 or 5.
+    initialize : bool
+        If True, prepend X gates on all input qubits (sets them to |1⟩) before
+        the majority logic.  This is useful for standalone testing/demo but should
+        be set to False (default) when composing the voter into a larger circuit
+        whose input qubits are already in the desired state.
 
     Returns
     -------
     QuantumCircuit
-        Circuit with input qubits initialized to |1⟩ for demonstration.
+        Majority voter circuit.  When ``initialize=False`` the circuit contains
+        only the Toffoli logic and a final measurement on the vote qubit.
 
     Raises
     ------
@@ -37,23 +43,24 @@ def majority_voter(num_inputs: int = 3) -> QuantumCircuit:
     4
     """
     if num_inputs == 3:
-        return _voter_3()
+        return _voter_3(initialize=initialize)
     elif num_inputs == 5:
-        return _voter_5()
+        return _voter_5(initialize=initialize)
     else:
         raise ValueError(f"num_inputs must be 3 or 5, got {num_inputs}")
 
 
-def _voter_3() -> QuantumCircuit:
+def _voter_3(initialize: bool = False) -> QuantumCircuit:
     """3-input Toffoli majority voter."""
     inputs = QuantumRegister(3, "input")
     vote = QuantumRegister(1, "vote")
     creg = ClassicalRegister(1, "result")
     qc = QuantumCircuit(inputs, vote, creg)
 
-    # Initialize all inputs to |1⟩ (for testing)
-    for i in range(3):
-        qc.x(inputs[i])
+    # Optionally initialize all inputs to |1⟩ (for standalone testing)
+    if initialize:
+        for i in range(3):
+            qc.x(inputs[i])
 
     qc.barrier()
 
@@ -68,16 +75,17 @@ def _voter_3() -> QuantumCircuit:
     return qc
 
 
-def _voter_5() -> QuantumCircuit:
+def _voter_5(initialize: bool = False) -> QuantumCircuit:
     """5-input majority voter using a sum register."""
     inputs = QuantumRegister(5, "input")
     sum_reg = QuantumRegister(3, "sum")   # enough bits to count 0-5
     creg = ClassicalRegister(3, "result")
     qc = QuantumCircuit(inputs, sum_reg, creg)
 
-    # Initialize all inputs to |1⟩
-    for i in range(5):
-        qc.x(inputs[i])
+    # Optionally initialize all inputs to |1⟩ (for standalone testing)
+    if initialize:
+        for i in range(5):
+            qc.x(inputs[i])
 
     qc.barrier()
 

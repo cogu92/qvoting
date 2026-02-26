@@ -61,4 +61,8 @@ def execute_circuit(
         job = sampler.run([isa_circuit], shots=shots)
         result = job.result()
         pub_result = result[0]
-        return pub_result.data.c.get_counts()
+        # Dynamically find the classical register bit array
+        # (register name can be 'c', 'result', 'meas', etc.)
+        creg_name = isa_circuit.cregs[0].name
+        bit_array = getattr(pub_result.data, creg_name)
+        return bit_array.get_counts()
