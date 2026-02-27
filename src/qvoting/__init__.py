@@ -27,7 +27,7 @@ from qvoting.voters.majority import majority_voter
 from qvoting.core.execution import execute_circuit
 from qvoting.core.logging import JobLogger
 from qvoting.mitigation.readout import apply_readout_mitigation
-from qvoting.mitigation.zne import apply_zne
+from qvoting.mitigation.zne import apply_zne, zne_hardware, fold_circuit, tvd_from_counts
 from qvoting.nisq_selector import NISQSelector
 
 __all__ = [
@@ -36,5 +36,8 @@ __all__ = [
     "JobLogger",
     "apply_readout_mitigation",
     "apply_zne",
+    "zne_hardware",
+    "fold_circuit",
+    "tvd_from_counts",
     "NISQSelector",
 ]
