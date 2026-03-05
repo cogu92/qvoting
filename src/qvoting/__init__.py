@@ -27,8 +27,20 @@ from qvoting.voters.majority import majority_voter
 from qvoting.core.execution import execute_circuit
 from qvoting.core.logging import JobLogger
 from qvoting.mitigation.readout import apply_readout_mitigation
-from qvoting.mitigation.zne import apply_zne, zne_hardware, fold_circuit, tvd_from_counts
+from qvoting.mitigation.zne import (
+    apply_zne, zne_hardware, fold_circuit, tvd_from_counts,
+)
 from qvoting.nisq_selector import NISQSelector
+from qvoting.nll import NeuralLinkedList, SPSATrainer, pattern_recovery_rate
+from qvoting.holographic import (
+    encode_logical_qubit,
+    build_voter_decoder,
+    erase_qubits,
+    run_erasure_sweep,
+    min_cut,
+    rt_prediction,
+    all_rt_predictions,
+)
 
 __all__ = [
     "majority_voter",
@@ -40,4 +52,16 @@ __all__ = [
     "fold_circuit",
     "tvd_from_counts",
     "NISQSelector",
+    # nll
+    "NeuralLinkedList",
+    "SPSATrainer",
+    "pattern_recovery_rate",
+    # holographic
+    "encode_logical_qubit",
+    "build_voter_decoder",
+    "erase_qubits",
+    "run_erasure_sweep",
+    "min_cut",
+    "rt_prediction",
+    "all_rt_predictions",
 ]

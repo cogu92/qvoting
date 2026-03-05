@@ -260,7 +260,7 @@ class NISQSelector:
             "-" * 55,
         ]
         for _, r in df.sort_values("Qt", ascending=False).iterrows():
-            badge = "✅" if r["binary"] == 1 else "❌"
+            badge = "OK" if r["binary"] == 1 else "--"
             t1 = f"{r['T1_med']:.1f}" if not np.isnan(r["T1_med"]) else "  N/A"
             ro = f"{r['ro_mean']:.4f}" if not np.isnan(r["ro_mean"]) else "  N/A"
             lines.append(
